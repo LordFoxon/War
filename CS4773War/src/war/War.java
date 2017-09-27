@@ -1,6 +1,6 @@
 package war;
 import logger.*;
-import Models.*;
+import models.*;
 public class War {
 
 	public static void main(String[] args) {
