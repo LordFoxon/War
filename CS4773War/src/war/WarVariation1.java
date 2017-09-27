@@ -20,6 +20,7 @@ public class WarVariation1 {
 			upPile.addCard(player1Card = player1.pile.removeCard());
 			upPile.addCard(player2Card = player2.pile.removeCard());
 
+			player1Card.
 		}
 	}
 	
