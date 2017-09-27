@@ -1,6 +1,6 @@
-package card;
+package Models;
 
 public enum Ranks {
 	TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE,
-	TEN, ACE;
+	TEN, JACK, QUEEN, KING, ACE;
 }

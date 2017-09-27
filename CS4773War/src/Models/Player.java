@@ -1,6 +1,5 @@
-package player;
+package Models;
 
-import pile.*;
 public class Player {
 
 	String name;

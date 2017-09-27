@@ -1,7 +1,7 @@
-package pile;
+package Models;
 
-import card.*;
 import java.util.*;
+
 public class Pile {
 	ArrayList<Card> cards;
 	public Pile() {
