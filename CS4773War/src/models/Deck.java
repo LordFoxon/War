@@ -24,13 +24,11 @@ public class Deck {
 	private void shuffleDeck() {
 		// TODO Auto-generated method stub
 		Collections.shuffle(cards);
-		
 	}
 
 	private void printDeck(){
 		for(Card card: cards){
-			System.out.print(card.suit);
-			System.out.println(card.rank);
+			System.out.print(card.suit+" " +card.rank+"\n");
 		}
 	}
 	
