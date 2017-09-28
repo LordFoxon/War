@@ -8,9 +8,7 @@ public class Pile {
 	public ArrayList<Card> cards;
 	public Pile(Deck deck) {
 		cards = new ArrayList<>();
-		System.out.println(deck.cards.size());
-		int i = 0;
-		for (i=0; i < HALFOFDECK ; i = i+1)
+		for (int i=0; i < HALFOFDECK ; i = i+1)
 			cards.add(deck.removeCard());
 	}
 

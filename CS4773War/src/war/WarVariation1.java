@@ -5,10 +5,6 @@ import models.*;
 
 public class WarVariation1 {
 
-	public static final int PLAYER1VICTORY = 1;
-	public static final int PLAYER2VICTORY = 2;
-	public static final int WAR = 0;
-
 	Deck mainDeck = new Deck();	 
 	Player player1;
 	Player player2;
@@ -20,9 +16,8 @@ public class WarVariation1 {
 	public WarVariation1(){
 		mainDeck.createDeck();
 		player1 =  new Player("Berto", mainDeck);
-		mainDeck.printDeck();
 		player2 =  new Player("Barfget", mainDeck);
-		mainDeck.printDeck();
+		String winningPlayer;
 		int count = 0;
 		
 		while(count < 10){
@@ -31,34 +26,42 @@ public class WarVariation1 {
 			checkForTurnResult();
 			count++;
 		}
+		winningPlayer = (player1.hand.cards.size() < player2.hand.cards.size()) ? player2.name:player1.name;
+		logger.logFormattedMessage("%s wins!", winningPlayer);
 	}
 	
 	public void war(){
+		upPile.addCard(player1Card = player1.hand.removeCard());
+		upPile.addCard(player2Card = player2.hand.removeCard());
 		drawCards();
 		checkForTurnResult();
 		
 	}
 	
 	public void drawCards(){
-		upPile.addCard(player1Card = player1.pile.removeCard());
-		upPile.addCard(player2Card = player2.pile.removeCard());
+		upPile.addCard(player1Card = player1.hand.removeCard());
+		upPile.addCard(player2Card = player2.hand.removeCard());
+		logger.logFormattedMessage("%s plays %s\n%s plays %s", player1.name, player1Card, player2.name, player2Card);
 	}
 	
 	public void checkForTurnResult(){
 		if(player1Card.compareTo(player2Card) > 0){
 			for(Card card: upPile.cards)
-				player1.pile.addCard(card);
-			logger.logMessage("Player 1 wins the round");
+				player1.hand.addCard(card);
+			player1.score += upPile.cards.size();
+			logger.logFormattedMessage("%s wins the round\nScore is %s %d, %s %d", 
+										player1.name, player1.name, player1.score, player2.name, player2.score);
 		}
 		else if(player1Card.compareTo(player2Card) < 0){
 			for(Card card: upPile.cards)
-				player2.pile.addCard(card);
-			logger.logMessage("Player 2 wins the round");
-
+				player2.hand.addCard(card);
+			player2.score += upPile.cards.size();
+			logger.logFormattedMessage("%s wins the round\nScore is %s %d, %s %d", 
+					player2.name, player1.name, player1.score, player2.name, player2.score);
 		}
 		else
 		{
-			logger.logMessage("WAR!");
+			logger.logMessage("War!");
 			war();
 		}
 	}

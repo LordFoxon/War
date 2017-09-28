@@ -16,4 +16,8 @@ public class Card implements Comparable<Card>{
 		return rank.compareTo(card.rank);
 	}
 
+	public String toString()
+	{
+		return rank + " of " + suit + " as up card";
+	}
 }

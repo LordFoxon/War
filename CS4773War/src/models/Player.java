@@ -2,11 +2,12 @@ package models;
 
 public class Player {
 	
-	String name;
-	public Pile pile;
+	public String name;
+	public Pile hand;
+	public int score = 0;
 	public Player(String name, Deck deck) {
 		this.name = name;
-		pile = new Pile(deck);
+		hand = new Pile(deck);
 	}
 
 }
