@@ -5,11 +5,13 @@ import java.util.*;
 public class Pile {
 	public static final int HALFOFDECK = 26;
 	
-	ArrayList<Card> cards;
+	public ArrayList<Card> cards;
 	public Pile(Deck deck) {
 		cards = new ArrayList<>();
-		for (int i=0; i < HALFOFDECK ; i++)
-			cards.add(deck.cards.remove(i));
+		System.out.println(deck.cards.size());
+		int i = 0;
+		for (i=0; i < HALFOFDECK ; i = i+1)
+			cards.add(deck.removeCard());
 	}
 
 	public Pile(){
@@ -21,6 +23,6 @@ public class Pile {
 	}
 	
 	public Card removeCard(){
-		return cards.remove(cards.size());
+		return cards.remove(0);
 	}
 }

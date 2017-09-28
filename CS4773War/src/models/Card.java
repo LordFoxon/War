@@ -1,7 +1,7 @@
 package models;
 
 
-public class Card{
+public class Card implements Comparable<Card>{
 
 	Suits suit;
 	Ranks rank;
@@ -11,5 +11,9 @@ public class Card{
 		this.rank = rank;
 	}
 
+	@Override
+	public int compareTo(Card card){
+		return rank.compareTo(card.rank);
+	}
 
 }

@@ -31,10 +31,14 @@ public class Deck {
 		cards.add(card);
 	}
 
-//	private void printDeck(){
-//		for(Card card: cards){
-//			System.out.print(card.suit+" " +card.rank+"\n");
-//		}
-//	}
+	public void printDeck(){
+		for(Card card: cards){
+			System.out.print(card.suit+" " +card.rank+"\n");
+		}
+	}
+
+	public Card removeCard() {
+		return cards.remove(0);
+	}
 	
 }
