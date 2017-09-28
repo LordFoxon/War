@@ -5,8 +5,9 @@ public class Logger {
 	{
 		System.out.println(initialLogMessage);
 	}
-	public void logMessage(String messageToLog)
+	public void logMessage(String messageToLog, Object varArgs)
 	{
-		System.out.println(messageToLog);
+        	System.out.println(String.format(fmt, varArgs);
+		//System.out.println(messageToLog);
 	}
 }
