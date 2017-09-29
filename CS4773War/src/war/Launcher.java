@@ -1,5 +1,4 @@
 package war;
-import war.*;
 
 public class Launcher {
 
