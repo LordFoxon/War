@@ -4,9 +4,9 @@ import logger.Logger;
 import models.*;
 
 /**
- * This variation of war features two players trying to obtain the most cards in their hands.
- * When a player wins, they put all the cards that are in the up pile (faced up or down) at the 
- * bottom of their hand.
+ * This variation of war features two players trying to obtain the most cards in their winning pile.
+ * When a player wins, they put add the cards that are in the up pile (faced up or down) to the 
+ * won pile.
 */
 public class WarVariation2 extends War {
 
@@ -21,8 +21,7 @@ public class WarVariation2 extends War {
 	Logger logger = new Logger("War Variation 2");
 
 	/**
-	 * The constructor creates the deck, players, and contains the counter of the game.
-	 * For the desire of keeping testing rapid, we decided there would be ten turns total 
+	 * The constructor creates the deck, players, and contains the winners' Piles
 	 */
 	public WarVariation2(){
 		player1WonPile = new Pile();
