@@ -57,10 +57,11 @@ public class WarVariation1 {
 		upPile.addCard(player1Card = player1.hand.removeCard());
 		upPile.addCard(player2Card = player2.hand.removeCard());
 		logger.logFormattedMessage("%s plays %s\n%s plays %s", player1.name, player1Card, player2.name, player2Card);
+		
 		if (warHappened == true)
 		{
-			upPile.addCard(player1Card = player1.hand.removeCard());
-			upPile.addCard(player2Card = player2.hand.removeCard());
+			upPile.addCard(player1.hand.removeCard());
+			upPile.addCard(player2.hand.removeCard());
 		}
 	}
 	
