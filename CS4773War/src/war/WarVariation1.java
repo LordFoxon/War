@@ -35,19 +35,29 @@ public class WarVariation1 extends War {
 		winningMessage = player1.hand.cards.size() < player2.hand.cards.size() ? 
 				(player1.hand.cards.size() == player2.hand.cards.size() ? "Tie game!" : player2.name + " wins!") : 
 				(player1.hand.cards.size() == player2.hand.cards.size() ? "Tie game!" : player1.name + " wins!");
-		logger.logMessage(winningMessage);
+		logger.logMessage(winningMessage+"\n");
 	}
 	
-
 	
 	/**
 	 * Adds all the cards in the game pile to the given player
 	 * @param winner			The winning player
 	 */
 	@Override
-	public void addUpPileCardsToWinner(Player winner)
-	{
+	public void addUpPileCardsToWinner(Player winner) {
 		for(Card card: upPile.cards)
 			winner.hand.addCard(card);
+		
+	}
+
+	@Override
+	public void drawCards(boolean warHappened){
+		super.drawCards(warHappened);
+		logger.logMessage("\n");
+	}
+	@Override
+	public void declareWinner(Player winner){
+		super.declareWinner(winner);
+		logger.logMessage("\n");
 	}
 }

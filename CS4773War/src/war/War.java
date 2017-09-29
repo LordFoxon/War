@@ -9,6 +9,8 @@ public abstract class War {
 	Card player1Card = new Card(null, null);
 	Card player2Card = new Card(null, null);
 	Pile upPile;
+	Pile player1WonPile;
+	Pile player2WonPile;
 	Logger logger;
 	
 	
@@ -21,8 +23,7 @@ public abstract class War {
 		upPile.addCard(player2Card = player2.hand.removeCard());
 		logger.logFormattedMessage("%s plays %s\n%s plays %s", player1.name, player1Card, player2.name, player2Card);
 		
-		if (warHappened == true)
-		{
+		if (warHappened == true){
 			upPile.addCard(player1.hand.removeCard());
 			upPile.addCard(player2.hand.removeCard());
 		}
@@ -32,7 +33,7 @@ public abstract class War {
 	 * This function adds two "face-down" cards to the up pile, draws two face-up cards and then checks for a winner
 	 */
 	public void initiateWar(){
-		logger.logMessage("War!");
+		logger.logMessage("War!\n");
 		drawCards(true);
 		checkForTurnResult();
 	}
@@ -63,9 +64,6 @@ public abstract class War {
 									winner.name, player1.name, player1.score, player2.name, player2.score);
 	}
 
-	public void addUpPileCardsToWinner(Player winner) {
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract void addUpPileCardsToWinner(Player winner);
 
 }

@@ -20,7 +20,7 @@ public class Logger {
 	 */
 	public void logFormattedMessage(String formatString, Object... varArgs)
 	{
-		System.out.println(String.format(formatString, varArgs));
+		System.out.print(String.format(formatString, varArgs));
 	}
 
 
@@ -29,7 +29,7 @@ public class Logger {
 	 * @param messageToLog			The message needing to be printed
 	 */
 	public void logMessage(String messageToLog) {
-		System.out.println(messageToLog);
+		System.out.print(messageToLog);
 	}
 
 }

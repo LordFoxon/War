@@ -13,13 +13,13 @@ public class WarVariation2 extends War {
 	
 	Pile player1WonPile;
 	Pile player2WonPile;
-	Logger logger = new Logger("War Variation 2");
 
 	/**
 	 * The constructor creates the deck, players, and contains the winners' Piles
 	 */
 	public WarVariation2(){
 		super();
+		logger = new Logger("War Variation 2");
 		player1WonPile = new Pile();
 		player2WonPile = new Pile();
 		mainDeck.createDeck();
@@ -50,6 +50,16 @@ public class WarVariation2 extends War {
 		winnersPile = winner.name.equals(player1.name) ? player1WonPile : player2WonPile;
 		for(Card card: upPile.cards)
 				winnersPile.addCard(card);
-			
+	}
+	
+	@Override
+	public void drawCards(boolean warHappened){
+		super.drawCards(warHappened);
+		logger.logMessage("\n");
+	}
+	@Override
+	public void declareWinner(Player winner){
+		super.declareWinner(winner);
+		logger.logMessage("\n");
 	}
 }
