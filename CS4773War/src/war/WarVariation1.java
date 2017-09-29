@@ -5,8 +5,8 @@ import models.*;
 
 /**
  * This variation of war features two players trying to obtain the most cards in their hands.
-	 * When a player wins, they put all the cards that are in the up pile (faced up or down) at the 
-	 * bottom of their hand.
+ * When a player wins, they put all the cards that are in the up pile (faced up or down) at the 
+ * bottom of their hand.
 */
 public class WarVariation1 {
 
@@ -28,13 +28,13 @@ public class WarVariation1 {
 		player1 =  new Player("Berto", mainDeck);
 		player2 =  new Player("Barfget", mainDeck);
 		String winningPlayer;
-		int count = 0;
+		int turns = 0;
 		
-		while(count < MAX_TURNS && player1.hand.cards.size() > 0 && player2.hand.cards.size() > 0){
+		while(turns < MAX_TURNS && player1.hand.cards.size() > 0 && player2.hand.cards.size() > 0){
 			upPile = new Pile();
 			drawCards(false);
 			checkForTurnResult();
-			count++;
+			turns++;
 		}
 		winningPlayer = (player1.hand.cards.size() < player2.hand.cards.size()) ? player2.name:player1.name;
 		logger.logFormattedMessage("%s wins!", winningPlayer);
@@ -83,7 +83,7 @@ public class WarVariation1 {
 	 */
 	public void declareWinner(Player winner)
 	{
-		addUpPileCardsToHand(winner);
+		addUpPileCardsToWinner(winner);
 		winner.score += upPile.cards.size();
 		logger.logFormattedMessage("%s wins the round\nScore is %s %d, %s %d", 
 									winner.name, player1.name, player1.score, player2.name, player2.score);
@@ -93,7 +93,7 @@ public class WarVariation1 {
 	 * Adds all the cards in the game pile to the given player
 	 * @param winner			The winning player
 	 */
-	public void addUpPileCardsToHand(Player winner)
+	public void addUpPileCardsToWinner(Player winner)
 	{
 		for(Card card: upPile.cards)
 			winner.hand.addCard(card);
