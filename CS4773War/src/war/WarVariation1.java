@@ -27,7 +27,7 @@ public class WarVariation1 extends War {
 		mainDeck.createDeck();
 		player1 =  new Player("Berto", mainDeck);
 		player2 =  new Player("Barfget", mainDeck);
-		String winningPlayer;
+		String winningMessage;
 		int turns = 0;
 		
 		while(turns < MAX_TURNS && player1.hand.cards.size() > 0 && player2.hand.cards.size() > 0){
@@ -36,8 +36,10 @@ public class WarVariation1 extends War {
 			checkForTurnResult();
 			turns++;
 		}
-		winningPlayer = (player1.hand.cards.size() < player2.hand.cards.size()) ? player2.name:player1.name;
-		logger.logFormattedMessage("%s wins!", winningPlayer);
+		winningMessage = player1.hand.cards.size() < player2.hand.cards.size() ? 
+				(player1.hand.cards.size() == player2.hand.cards.size() ? "Tie game!" : player2.name + " wins!") : 
+				(player1.hand.cards.size() == player2.hand.cards.size() ? "Tie game!" : player1.name + " wins!");
+		logger.logMessage(winningMessage);
 	}
 	
 	/**
