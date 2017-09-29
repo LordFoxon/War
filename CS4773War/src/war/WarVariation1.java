@@ -8,7 +8,7 @@ import models.*;
  * When a player wins, they put all the cards that are in the up pile (faced up or down) at the 
  * bottom of their hand.
 */
-public class WarVariation1 {
+public class WarVariation1 extends War {
 
 	public static final int MAX_TURNS = 10; 
 	Deck mainDeck = new Deck();	 
