@@ -16,7 +16,7 @@ public class Player {
 	 */
 	public Player(String name, Deck deck) {
 		this.name = name;
-		hand = new Pile(deck);
+		hand = new Pile(deck.cards);
 	}
 
 }

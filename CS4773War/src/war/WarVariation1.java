@@ -26,7 +26,7 @@ public class WarVariation1 extends War {
 	public WarVariation1(){
 		mainDeck.createDeck();
 		player1 =  new Player("Berto", mainDeck);
-		player2 =  new Player("Barfget", mainDeck);
+		player2 =  new Player("Barf", mainDeck);
 		String winningMessage;
 		int turns = 0;
 		

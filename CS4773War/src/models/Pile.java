@@ -14,10 +14,10 @@ public class Pile {
 	 * Creates a pile object having a list of cards and splits 52 cards evenly between the 2 players 
 	 * @param deck			The deck of main cards			
 	 */
-	public Pile(Deck deck) {
-		cards = new ArrayList<>();
+	public Pile(ArrayList<Card> cards) {
+		this.cards = new ArrayList<>();
 		for (int i=0; i < HALFOFDECK ; i = i+1)
-			cards.add(deck.removeCard());
+			this.cards.add(cards.remove(0));
 	}
 
 	
