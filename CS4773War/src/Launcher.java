@@ -1,4 +1,4 @@
-import war.WarVariation1;
+import war.*;
 
 public class Launcher {
 
