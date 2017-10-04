@@ -23,7 +23,7 @@ public abstract class War {
 		upPile.addCard(player1Card = player1.hand.removeCard());
 		upPile.addCard(player2Card = player2.hand.removeCard());
 		logger.logFormattedMessage("%s plays %s\n%s plays %s", player1.name, player1Card, player2.name, player2Card);
-		if(player1.hand.cards.size() == 0){
+		if(player1.hand.cards.size() == 0 && warHappened == true){
 			upPile.cards.clear();
 		}
 		else if (warHappened == true){
