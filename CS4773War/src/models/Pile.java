@@ -6,17 +6,16 @@ import java.util.*;
  * A heap of cards that can either represent the up pile or a player's hand
  */
 public class Pile {
-	public static final int HALFOFDECK = 26;
-	
 	public ArrayList<Card> cards;
 	
 	/**
 	 * Creates a pile object having a list of cards and splits 52 cards evenly between the 2 players 
-	 * @param deck			The deck of main cards			
-	 */
-	public Pile(ArrayList<Card> cards) {
+	 * @param deck			The deck of main cards		
+	 * @param numberOfCards The number of cards to be taken out of the deck for each pile	
+	 */	
+	public Pile(ArrayList<Card> cards, int numberOfCards) {
 		this.cards = new ArrayList<>();
-		for (int i=0; i < HALFOFDECK ; i = i+1)
+		for (int i=0; i < numberOfCards ; i = i+1)
 			this.cards.add(cards.remove(0));
 	}
 

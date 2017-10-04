@@ -11,18 +11,21 @@ import models.*;
 public class WarVariation1 extends War {
 
 	public static final int MAX_TURNS = 10; 
-	
 
 	/**
 	 * The constructor creates the deck, players, and contains the counter of the game.
 	 * For the desire of keeping testing rapid, we decided there would be ten turns total 
+	 * @param deck		The Deck to be used for this instance of War
 	 */
-	public WarVariation1(){
+	public WarVariation1(Deck deck){
 		super();
-		logger = new Logger("War Variation 1");
-		mainDeck.createDeck();
-		player1 =  new Player("Berto", mainDeck);
-		player2 =  new Player("Barf", mainDeck);
+		logger = new Logger("War Variation  1");
+		//mainDeck.createDeck();
+		mainDeck = deck;
+		int numberOfPlayers = 2;
+		int numberOfCards = getNumberOfCardsPerPlayer(mainDeck.cards.size(), numberOfPlayers);
+		player1 =  new Player("Berto", mainDeck, numberOfCards);
+		player2 =  new Player("Barf", mainDeck, numberOfCards);
 		String winningMessage;
 		int turns = 0;
 		

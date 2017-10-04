@@ -6,6 +6,7 @@ public abstract class War {
 	Deck mainDeck = new Deck();	 
 	Player player1;
 	Player player2;
+	Player winningPlayer;
 	Card player1Card = new Card(null, null);
 	Card player2Card = new Card(null, null);
 	Pile upPile;
@@ -22,8 +23,10 @@ public abstract class War {
 		upPile.addCard(player1Card = player1.hand.removeCard());
 		upPile.addCard(player2Card = player2.hand.removeCard());
 		logger.logFormattedMessage("%s plays %s\n%s plays %s", player1.name, player1Card, player2.name, player2Card);
-		
-		if (warHappened == true){
+		if(player1.hand.cards.size() == 0){
+			upPile.cards.clear();
+		}
+		else if (warHappened == true){
 			upPile.addCard(player1.hand.removeCard());
 			upPile.addCard(player2.hand.removeCard());
 		}
@@ -62,6 +65,21 @@ public abstract class War {
 		winner.score += upPile.cards.size();
 		logger.logFormattedMessage("%s wins the round\nScore is %s %d, %s %d", 
 									winner.name, player1.name, player1.score, player2.name, player2.score);
+	}
+	
+	public Player checkWinner(){
+		return this.winningPlayer;
+	}
+	/**
+	 * Returns the number of cards that each player will be given based on the card in the deck
+	 * and number of players in the game.
+	 * 
+	 * @param cardsInDeck 		The number of cards in the deck
+	 * @param numberOfPlayers	Number of players in the game
+	 * @return
+	 */
+	public int getNumberOfCardsPerPlayer(int cardsInDeck, int numberOfPlayers){
+		return (cardsInDeck - (cardsInDeck % numberOfPlayers)) / numberOfPlayers;
 	}
 
 	public abstract void addUpPileCardsToWinner(Player winner);

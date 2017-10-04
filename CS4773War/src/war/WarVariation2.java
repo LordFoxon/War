@@ -14,17 +14,21 @@ public class WarVariation2 extends War {
 	Pile player1WonPile;
 	Pile player2WonPile;
 
+
 	/**
 	 * The constructor creates the deck, players, and contains the winners' Piles
+	 *  @param deck		The Deck to be used for this instance of War
 	 */
-	public WarVariation2(){
+	public WarVariation2(Deck deck){
 		super();
 		logger = new Logger("War Variation 2");
+		int numberOfPlayers = 2;
 		player1WonPile = new Pile();
 		player2WonPile = new Pile();
-		mainDeck.createDeck();
-		player1 =  new Player("Berto", mainDeck);
-		player2 =  new Player("Bridget", mainDeck);
+		mainDeck = deck;
+		int numberOfCardsPerPlayer = getNumberOfCardsPerPlayer(mainDeck.cards.size(), numberOfPlayers);
+		player1 =  new Player("Berto", mainDeck, numberOfCardsPerPlayer);
+		player2 =  new Player("Bridget", mainDeck, numberOfCardsPerPlayer);
 		String winningMessage;
 		
 		while(player1.score+player2.score != 52 && player1.hand.cards.size() > 0 && player2.hand.cards.size() > 0){

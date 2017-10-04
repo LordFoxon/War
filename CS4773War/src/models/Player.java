@@ -5,7 +5,7 @@ package models;
  * Keeps track of hand and score of each player.
  */
 public class Player {
-	
+
 	public String name;
 	public Pile hand;
 	public int score = 0;
@@ -13,10 +13,11 @@ public class Player {
 	 * Creates a player and initializes their name and hand
 	 * @param name			The first name of the player
 	 * @param deck			The main deck split in half
+	 * @param numberOdCards The number of cards to be designated to each player
 	 */
-	public Player(String name, Deck deck) {
+	public Player(String name, Deck deck, int numberOfCards ) {
 		this.name = name;
-		hand = new Pile(deck.cards);
+		hand = new Pile(deck.cards, numberOfCards);
 	}
-
+	
 }

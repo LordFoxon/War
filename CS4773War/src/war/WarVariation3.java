@@ -19,28 +19,23 @@ public class WarVariation3 extends War {
 
 	/**
 	 * The constructor creates the deck, players, and contains the winners' Piles
+	 * @param deck		The Deck to be used for this instance of War
 	 */
-	public WarVariation3(){
+	public WarVariation3(Deck deck){
 		super();
 		logger = new Logger("War Variation 3");
+		mainDeck = deck;
 		player1WonPile = new Pile();
 		player2WonPile = new Pile();
+		player3WonPile =  new Pile();
+		int numberOfPlayers = 3;
+		int numberOfCardsPerPile = getNumberOfCardsPerPlayer(mainDeck.cards.size(), numberOfPlayers);
 		/*
-		 * TODO rather than adding 52 cards, 51 should be added
-		 */
-		mainDeck.createDeck();
-		/*
-		 * TODO change "HALF OF DECK"
 		 * TODO change deck initialization
-		 * could do where start and stop indexes are passed in
-		 * int size = mainDeck.cards.size;
-		 * i.e new Player("Berto", mainDeck, 0, size/3);
-		 * new Player("Bridget", mainDeck, size/3, size*2/3);
-		 * new Player("Pablo", mainDeck, size*2/3, size);
 		 */
-		player1 =  new Player("Berto", mainDeck);
-		player2 =  new Player("Bridget", mainDeck);
-		player3 =  new Player("Pablo", mainDeck);
+		player1 =  new Player("Berto", mainDeck, numberOfCardsPerPile);
+		player2 =  new Player("Bridget", mainDeck, numberOfCardsPerPile);
+		player3 =  new Player("Pablo", mainDeck, numberOfCardsPerPile);
 		
 		while(player1.score+player2.score+player3.score != 51 && 
 				player1.hand.cards.size() > 0 && player2.hand.cards.size() > 0 && player3.hand.cards.size() > 0){
@@ -58,6 +53,12 @@ public class WarVariation3 extends War {
 			createWinningMessage(player3, player1, player2);
 	}
 	
+	/**
+	 * Creates the winning message depending on what player won the game
+	 * @param currentPlayer 
+	 * @param opponent1
+	 * @param opponent2
+	 */
 	public void createWinningMessage(Player currentPlayer, Player opponent1, Player opponent2){
 		String winningMessage;
 		if (biggest == opponent1.score)
@@ -79,8 +80,9 @@ public class WarVariation3 extends War {
 		super.drawCards(warHappened);
 		upPile.addCard(player3Card = player3.hand.removeCard());
 		logger.logFormattedMessage("\n%s plays %s\n", player3.name, player3Card);
-		
-		if (warHappened == true)
+		if(player3.hand.cards.size() == 0)
+			upPile.cards.clear();
+		else if (warHappened == true)
 			upPile.addCard(player3.hand.removeCard());
 	}
 	
