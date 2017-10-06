@@ -52,12 +52,10 @@ public abstract class War {
 			drawCards(true);
 			checkForTurnResult();
 		}
-//		else{
-//			upPile.cards.clear();
-//			checkForTurnResult();
-////			logger.logFormattedMessage("No more cards, TIE round\nScore is %s %d, %s %d", 
-////					 player1.name, player1.score, player2.name, player2.score);
-//		}
+		else{
+			logger.logFormattedMessage("No more cards. Tie round!!!\n");
+			printScore();
+		}
 	}
 	
 	
@@ -67,9 +65,21 @@ public abstract class War {
 	 */
 	public void checkForTurnResult(){
 		if(player1Card.compareTo(player2Card) > 0)
-			declareWinner(player1);
+			if (upPile.cards.size() > 0)
+				declareWinner(player1);
+			else
+			{
+				logger.logFormattedMessage("No more cards. Tie round\n");
+				printScore();
+			}
 		else if(player1Card.compareTo(player2Card) < 0)
-			declareWinner(player2);
+			if (upPile.cards.size() > 0)
+				declareWinner(player2);
+			else
+			{
+				logger.logFormattedMessage("No more cards. Tie round.\n");
+				printScore();
+			}
 		else
 			initiateWar();
 	}
