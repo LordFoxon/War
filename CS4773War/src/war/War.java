@@ -53,7 +53,7 @@ public abstract class War {
 			checkForTurnResult();
 		}
 		else{
-			logger.logFormattedMessage("No more cards. Tie round!!!\n");
+			logger.logFormattedMessage("No more cards, tie round\n");
 			printScore();
 		}
 	}
@@ -69,7 +69,7 @@ public abstract class War {
 				declareWinner(player1);
 			else
 			{
-				logger.logFormattedMessage("No more cards. Tie round\n");
+				logger.logFormattedMessage("No more cards, tie round\n");
 				printScore();
 			}
 		else if(player1Card.compareTo(player2Card) < 0)
@@ -77,7 +77,7 @@ public abstract class War {
 				declareWinner(player2);
 			else
 			{
-				logger.logFormattedMessage("No more cards. Tie round.\n");
+				logger.logFormattedMessage("No more cards, tie round.\n");
 				printScore();
 			}
 		else
