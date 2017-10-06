@@ -62,6 +62,20 @@ public class WarTest {
 		
 	}
 	
+	@Test
+	public void Variation1Player1Won(){
+		
+	}
+	
+	@Test
+	public void Variation1Player2Won(){
+		
+	}
+	
+	@Test
+	public void Variation1TieWon(){
+		
+	}
 	
 
 }
