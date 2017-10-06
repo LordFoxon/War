@@ -75,7 +75,7 @@ public abstract class War {
 			if (upPile.cards.size() > 0)
 				declareWinner(player2);
 			else{
-				logger.logFormattedMessage("No more cards, tie round.\n");
+				logger.logFormattedMessage("No more cards, tie round\n");
 				printScore();
 			}
 		else
