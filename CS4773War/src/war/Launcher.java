@@ -1,13 +1,15 @@
 package war;
 
 import models.Deck;
+import models.Player;
 
 public class Launcher {
 
 	public static void main(String[] args) {
 		Deck mainDeck = new Deck();	
 		mainDeck.createDeck();
-		WarVariation2 war1 = new WarVariation2(mainDeck);
+		WarVariation3 war1 = new WarVariation3(mainDeck);
+		System.out.println(war1.getWinner());
 	}
 
 }

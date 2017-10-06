@@ -1,5 +1,8 @@
 package models;
 
+import war.War;
+import war.WarVariation1;
+
 /**
  * Someone who engages in the game.
  * Keeps track of hand and score of each player.
@@ -20,4 +23,9 @@ public class Player {
 		hand = new Pile(deck.cards, numberOfCards);
 	}
 	
+	public int getNumberOfCards(War variation){
+		if (variation instanceof WarVariation1)
+			return this.hand.cards.size();
+		return this.score;
+	}
 }

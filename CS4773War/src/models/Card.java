@@ -20,6 +20,9 @@ public class Card implements Comparable<Card>{
 		this.rank = rank;
 	}
 
+	public Card() {
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */

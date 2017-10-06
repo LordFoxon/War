@@ -1,5 +1,8 @@
 package war;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import logger.Logger;
 import models.*;
 
@@ -19,13 +22,16 @@ public class WarVariation1 extends War {
 	 */
 	public WarVariation1(Deck deck){
 		super();
-		logger = new Logger("War Variation  1");
+		logger = new Logger("War Variation 1");
 		//mainDeck.createDeck();
 		mainDeck = deck;
 		int numberOfPlayers = 2;
 		int numberOfCards = getNumberOfCardsPerPlayer(mainDeck.cards.size(), numberOfPlayers);
 		player1 =  new Player("Berto", mainDeck, numberOfCards);
 		player2 =  new Player("Barf", mainDeck, numberOfCards);
+		players.add(player1);
+		players.add(player2);
+		
 		String winningMessage;
 		int turns = 0;
 		
@@ -35,10 +41,13 @@ public class WarVariation1 extends War {
 			checkForTurnResult();
 			turns++;
 		}
+		calculateWinner(players);
+
 		winningMessage = player1.hand.cards.size() < player2.hand.cards.size() ? 
 				(player1.hand.cards.size() == player2.hand.cards.size() ? "Tie game!" : player2.name + " wins!") : 
 				(player1.hand.cards.size() == player2.hand.cards.size() ? "Tie game!" : player1.name + " wins!");
 		logger.logMessage(winningMessage+"\n");
+		//setWinningMessage(winningMessage);
 	}
 	
 	
@@ -50,17 +59,11 @@ public class WarVariation1 extends War {
 	public void addUpPileCardsToWinner(Player winner) {
 		for(Card card: upPile.cards)
 			winner.hand.addCard(card);
-		
 	}
 
 	@Override
 	public void drawCards(boolean warHappened){
 		super.drawCards(warHappened);
-		logger.logMessage("\n");
-	}
-	@Override
-	public void declareWinner(Player winner){
-		super.declareWinner(winner);
 		logger.logMessage("\n");
 	}
 }

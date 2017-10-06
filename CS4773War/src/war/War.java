@@ -1,4 +1,6 @@
 package war;
+import java.util.ArrayList;
+
 import logger.Logger;
 import models.*;
 public abstract class War {
@@ -6,15 +8,15 @@ public abstract class War {
 	Deck mainDeck = new Deck();	 
 	Player player1;
 	Player player2;
-	Player winningPlayer;
-	Card player1Card = new Card(null, null);
-	Card player2Card = new Card(null, null);
+	Card player1Card = new Card();
+	Card player2Card = new Card();
 	Pile upPile;
 	Pile player1WonPile;
 	Pile player2WonPile;
 	Logger logger;
-	
-	
+	ArrayList<Player> players = new ArrayList<Player>();
+
+	Player winningPlayer;
 	/**
 	 * Draw one card from players' hands and log cards drawn and if there was war, two more cards are drawn
 	 * @param warHappened			boolean indicating whether there war was declared or not			
@@ -31,14 +33,31 @@ public abstract class War {
 			upPile.addCard(player2.hand.removeCard());
 		}
 	}
+	public void printScore()
+	{
+		logger.logFormattedMessage("Score is %s %d", player1.name, player1.score);
+		for (int i = 1; i < players.size(); i++)
+			logger.logFormattedMessage(", %s %d", players.get(i).name, players.get(i).score);
+		logger.logMessage("\n");
+	}
 	
 	/**
 	 * This function adds two "face-down" cards to the up pile, draws two face-up cards and then checks for a winner
 	 */
 	public void initiateWar(){
 		logger.logMessage("War!\n");
-		drawCards(true);
-		checkForTurnResult();
+		printScore();
+		
+		if(player1.hand.cards.size() > 0){
+			drawCards(true);
+			checkForTurnResult();
+		}
+//		else{
+//			upPile.cards.clear();
+//			checkForTurnResult();
+////			logger.logFormattedMessage("No more cards, TIE round\nScore is %s %d, %s %d", 
+////					 player1.name, player1.score, player2.name, player2.score);
+//		}
 	}
 	
 	
@@ -63,13 +82,11 @@ public abstract class War {
 	{
 		addUpPileCardsToWinner(winner);
 		winner.score += upPile.cards.size();
-		logger.logFormattedMessage("%s wins the round\nScore is %s %d, %s %d", 
-									winner.name, player1.name, player1.score, player2.name, player2.score);
+		logger.logFormattedMessage("%s wins the round\n", winner.name);
+		printScore();
 	}
 	
-	public Player checkWinner(){
-		return this.winningPlayer;
-	}
+
 	/**
 	 * Returns the number of cards that each player will be given based on the card in the deck
 	 * and number of players in the game.
@@ -81,7 +98,35 @@ public abstract class War {
 	public int getNumberOfCardsPerPlayer(int cardsInDeck, int numberOfPlayers){
 		return (cardsInDeck - (cardsInDeck % numberOfPlayers)) / numberOfPlayers;
 	}
+	
+	public void calculateWinner(ArrayList<Player> players){
+		int highestScore = -1;
+		Player winningPlayer = null;
+		for(Player player: players){
+			if(player.getNumberOfCards(this) > highestScore){
+				highestScore = player.getNumberOfCards(this);
+				winningPlayer = player;
+				
+			}else if(player.getNumberOfCards(this) == highestScore){
+				highestScore = player.getNumberOfCards(this);
+				winningPlayer = null;
+			}
+		}
+		setWinningPLayer(winningPlayer);
+	}
 
+	public Player getWinner(){
+		if(this.winningPlayer == null)
+			return null;
+		else
+			return this.winningPlayer;
+	}
+	
+	public void setWinningPLayer(Player winner){
+		this.winningPlayer = winner;
+	}
+
+	
 	public abstract void addUpPileCardsToWinner(Player winner);
 
 }

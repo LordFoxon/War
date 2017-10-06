@@ -10,12 +10,8 @@ import models.*;
 */
 public class WarVariation3 extends War {
 	Player player3;
-	/*
-	 * TODO create empty constructor for card
-	 */
-	Card player3Card = new Card(null, null);
+	Card player3Card = new Card();
 	Pile player3WonPile;
-	int biggest;
 
 	/**
 	 * The constructor creates the deck, players, and contains the winners' Piles
@@ -30,12 +26,14 @@ public class WarVariation3 extends War {
 		player3WonPile =  new Pile();
 		int numberOfPlayers = 3;
 		int numberOfCardsPerPile = getNumberOfCardsPerPlayer(mainDeck.cards.size(), numberOfPlayers);
-		/*
-		 * TODO change deck initialization
-		 */
+	
 		player1 =  new Player("Berto", mainDeck, numberOfCardsPerPile);
 		player2 =  new Player("Bridget", mainDeck, numberOfCardsPerPile);
 		player3 =  new Player("Pablo", mainDeck, numberOfCardsPerPile);
+		
+		players.add(player1);
+		players.add(player2);
+		players.add(player3);
 		
 		while(player1.score+player2.score+player3.score != 51 && 
 				player1.hand.cards.size() > 0 && player2.hand.cards.size() > 0 && player3.hand.cards.size() > 0){
@@ -43,34 +41,9 @@ public class WarVariation3 extends War {
 			drawCards(false);
 			checkForTurnResult();
 		}
-	
-		biggest = Math.max(player1.score, Math.max(player2.score, player3.score));
-		if (biggest == player1.score)
-			createWinningMessage(player1, player2, player3);
-		else if (biggest == player2.score)
-			createWinningMessage(player2, player1, player3);
-		else
-			createWinningMessage(player3, player1, player2);
+		calculateWinner(players);
 	}
 	
-	/**
-	 * Creates the winning message depending on what player won the game
-	 * @param currentPlayer 
-	 * @param opponent1
-	 * @param opponent2
-	 */
-	public void createWinningMessage(Player currentPlayer, Player opponent1, Player opponent2){
-		String winningMessage;
-		if (biggest == opponent1.score)
-			winningMessage = "Tie game between " + currentPlayer.name + " and " + opponent1.name + "!";
-		else if (biggest == opponent2.score)
-			winningMessage = "Tie game between " + currentPlayer.name + " and " + opponent2.name + "!";
-		else if (biggest == opponent1.score && biggest == opponent2.score)
-			winningMessage = "Tie game!";
-		else
-			winningMessage = currentPlayer.name + " wins!";
-		logger.logMessage(winningMessage);
-	}
 	/**
 	 * Draw one card from players' hands and log cards drawn and if there was war, two more cards are drawn
 	 * @param warHappened			boolean indicating whether there war was declared or not			
@@ -80,7 +53,7 @@ public class WarVariation3 extends War {
 		super.drawCards(warHappened);
 		upPile.addCard(player3Card = player3.hand.removeCard());
 		logger.logFormattedMessage("\n%s plays %s\n", player3.name, player3Card);
-		if(player3.hand.cards.size() == 0)
+		if(player3.hand.cards.size() == 0 && warHappened)
 			upPile.cards.clear();
 		else if (warHappened == true)
 			upPile.addCard(player3.hand.removeCard());
@@ -99,16 +72,6 @@ public class WarVariation3 extends War {
 			declareWinner(player3);
 		else
 			initiateWar();
-	}
-	
-	/**
-	 * Declares the winner by adding the piles' cards to their hands, winner's score is incremented, winning message logged
-	 * @param winner			The winning player
-	 */
-	@Override
-	public void declareWinner(Player winner){
-		super.declareWinner(winner);
-		logger.logFormattedMessage(", %s %d\n", player3.name, player3.score);
 	}
 	
 	/**

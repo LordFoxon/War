@@ -1,5 +1,7 @@
 package war;
 
+import java.util.ArrayList;
+
 import logger.Logger;
 import models.*;
 
@@ -10,10 +12,8 @@ import models.*;
 */
 public class WarVariation2 extends War {
 
-	
 	Pile player1WonPile;
 	Pile player2WonPile;
-
 
 	/**
 	 * The constructor creates the deck, players, and contains the winners' Piles
@@ -29,6 +29,8 @@ public class WarVariation2 extends War {
 		int numberOfCardsPerPlayer = getNumberOfCardsPerPlayer(mainDeck.cards.size(), numberOfPlayers);
 		player1 =  new Player("Berto", mainDeck, numberOfCardsPerPlayer);
 		player2 =  new Player("Bridget", mainDeck, numberOfCardsPerPlayer);
+		players.add(player1);
+		players.add(player2);
 		String winningMessage;
 		
 		while(player1.score+player2.score != 52 && player1.hand.cards.size() > 0 && player2.hand.cards.size() > 0){
@@ -36,6 +38,10 @@ public class WarVariation2 extends War {
 			drawCards(false);
 			checkForTurnResult();
 		}
+		//**//
+		calculateWinner(players);
+		//**//
+
 		winningMessage = player1WonPile.cards.size() < player2WonPile.cards.size() ? 
 				(player1WonPile.cards.size() == player2WonPile.cards.size() ? "Tie game!" : player2.name + " wins!") : 
 				(player1WonPile.cards.size() == player2WonPile.cards.size() ? "Tie game!" : player1.name + " wins!");
@@ -59,11 +65,6 @@ public class WarVariation2 extends War {
 	@Override
 	public void drawCards(boolean warHappened){
 		super.drawCards(warHappened);
-		logger.logMessage("\n");
-	}
-	@Override
-	public void declareWinner(Player winner){
-		super.declareWinner(winner);
 		logger.logMessage("\n");
 	}
 }
