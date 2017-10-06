@@ -42,6 +42,11 @@ public class WarVariation3 extends War {
 			checkForTurnResult();
 		}
 		calculateWinner(players);
+		
+		if(getWinner() != null)
+			logger.logMessage(getWinner().name + " wins!");
+		else
+			logger.logMessage("Tie!");
 	}
 	
 	/**

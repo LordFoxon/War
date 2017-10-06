@@ -1,8 +1,5 @@
 package war;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import logger.Logger;
 import models.*;
 
@@ -23,7 +20,6 @@ public class WarVariation1 extends War {
 	public WarVariation1(Deck deck){
 		super();
 		logger = new Logger("War Variation 1");
-		//mainDeck.createDeck();
 		mainDeck = deck;
 		int numberOfPlayers = 2;
 		int numberOfCards = getNumberOfCardsPerPlayer(mainDeck.cards.size(), numberOfPlayers);
@@ -47,7 +43,6 @@ public class WarVariation1 extends War {
 				(player1.hand.cards.size() == player2.hand.cards.size() ? "Tie game!" : player2.name + " wins!") : 
 				(player1.hand.cards.size() == player2.hand.cards.size() ? "Tie game!" : player1.name + " wins!");
 		logger.logMessage(winningMessage+"\n");
-		//setWinningMessage(winningMessage);
 	}
 	
 	

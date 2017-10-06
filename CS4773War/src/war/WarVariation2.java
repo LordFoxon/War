@@ -1,7 +1,5 @@
 package war;
 
-import java.util.ArrayList;
-
 import logger.Logger;
 import models.*;
 
@@ -38,10 +36,8 @@ public class WarVariation2 extends War {
 			drawCards(false);
 			checkForTurnResult();
 		}
-		//**//
 		calculateWinner(players);
-		//**//
-
+		
 		winningMessage = player1WonPile.cards.size() < player2WonPile.cards.size() ? 
 				(player1WonPile.cards.size() == player2WonPile.cards.size() ? "Tie game!" : player2.name + " wins!") : 
 				(player1WonPile.cards.size() == player2WonPile.cards.size() ? "Tie game!" : player1.name + " wins!");
