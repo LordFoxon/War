@@ -41,10 +41,10 @@ public class WarVariation3 extends War {
 			drawCards(false);
 			checkForTurnResult();
 		}
-		calculateWinner(players);
+		calculateWinner();
 		
-		if(getWinner() != null)
-			logger.logMessage(getWinner().name + " wins!");
+		if(winningPlayer != null)
+			logger.logMessage(winningPlayer.name + " wins!");
 		else
 			logger.logMessage("Tie!");
 	}

@@ -9,7 +9,6 @@ import models.*;
  * won pile.
 */
 public class WarVariation2 extends War {
-
 	Pile player1WonPile;
 	Pile player2WonPile;
 
@@ -29,19 +28,18 @@ public class WarVariation2 extends War {
 		player2 =  new Player("Bridget", mainDeck, numberOfCardsPerPlayer);
 		players.add(player1);
 		players.add(player2);
-		String winningMessage;
 		
 		while(player1.score+player2.score != 52 && player1.hand.cards.size() > 0 && player2.hand.cards.size() > 0){
 			upPile = new Pile();
 			drawCards(false);
 			checkForTurnResult();
 		}
-		calculateWinner(players);
+		calculateWinner();
 		
-		winningMessage = player1WonPile.cards.size() < player2WonPile.cards.size() ? 
-				(player1WonPile.cards.size() == player2WonPile.cards.size() ? "Tie game!" : player2.name + " wins!") : 
-				(player1WonPile.cards.size() == player2WonPile.cards.size() ? "Tie game!" : player1.name + " wins!");
-		logger.logMessage(winningMessage);
+		if(winningPlayer != null)
+			logger.logMessage(winningPlayer.name + " wins!");
+		else
+			logger.logMessage("Tie!");
 	}
 	
 	

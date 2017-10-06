@@ -28,7 +28,6 @@ public class WarVariation1 extends War {
 		players.add(player1);
 		players.add(player2);
 		
-		String winningMessage;
 		int turns = 0;
 		
 		while(turns < MAX_TURNS && player1.hand.cards.size() > 0 && player2.hand.cards.size() > 0){
@@ -37,12 +36,12 @@ public class WarVariation1 extends War {
 			checkForTurnResult();
 			turns++;
 		}
-		calculateWinner(players);
+		calculateWinner();
 
-		winningMessage = player1.hand.cards.size() < player2.hand.cards.size() ? 
-				(player1.hand.cards.size() == player2.hand.cards.size() ? "Tie game!" : player2.name + " wins!") : 
-				(player1.hand.cards.size() == player2.hand.cards.size() ? "Tie game!" : player1.name + " wins!");
-		logger.logMessage(winningMessage+"\n");
+		if(winningPlayer != null)
+			logger.logMessage(winningPlayer.name + " wins!");
+		else
+			logger.logMessage("Tie!");
 	}
 	
 	
