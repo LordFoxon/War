@@ -25,6 +25,9 @@ public class Deck extends Pile{
 		shuffleDeck();
 	}
 	
+	public void createEmptyDeck() {
+		
+	}
 	/**
 	 * Using collections library, it shifts the cards in the deck around 
 	 */
