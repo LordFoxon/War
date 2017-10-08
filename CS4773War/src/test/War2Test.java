@@ -28,11 +28,10 @@ public class War2Test {
 	
 	@Test
 	public void Variation2WithNoCards(){
-		System.out.println("No cards no game");
+		System.out.println("\nNo cards no game");
 		Deck deck = new Deck();
 		deck.createEmptyDeck();
 		WarVariation2 war2 = new WarVariation2(deck);
-		System.out.println(war2.winningPlayer);
 		assertEquals(null, war2.winningPlayer);
 	}
 	
