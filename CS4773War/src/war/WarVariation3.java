@@ -55,6 +55,8 @@ public class WarVariation3 extends War {
 	 */
 	@Override
 	public void drawCards(boolean warHappened){
+		//System.out.println("\n");
+		//System.out.println(player1.hand.cards.size());
 		super.drawCards(warHappened);
 		upPile.addCard(player3Card = player3.hand.removeCard());
 		logger.logFormattedMessage("\n%s plays %s\n", player3.name, player3Card);

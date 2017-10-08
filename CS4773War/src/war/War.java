@@ -48,8 +48,7 @@ public abstract class War {
 	public void initiateWar(){
 		logger.logMessage("War!\n");
 		printScore();
-		
-		if(player1.hand.cards.size() > 0){
+		if(player1.hand.cards.size() > 1){
 			drawCards(true);
 			checkForTurnResult();
 		}
